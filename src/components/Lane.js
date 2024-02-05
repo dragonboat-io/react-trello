@@ -39,7 +39,7 @@ class Lane extends Component {
 
   handleScroll = evt => {
     const node = evt.target
-    const elemScrolPosition = node.scrollHeight - node.scrollTop - node.clientHeight
+    const elemScrollPosition = node.scrollHeight - node.scrollTop - node.clientHeight
     const {onLaneScroll} = this.props
     // In some browsers and/or screen sizes a decimal rest value between 0 and 1 exists, so it should be checked on < 1 instead of < 0
     if (elemScrollPosition < 1 && onLaneScroll && !this.state.loading) {
@@ -168,7 +168,18 @@ class Lane extends Component {
   }
 
   renderDragContainer = isDraggingOver => {
-    const {laneSortFunction, editable, hideCardDeleteIcon, tagStyle, cardStyle, draggable, cardDraggable, cards, cardDragClass, id} = this.props
+    const {
+      laneSortFunction,
+      editable,
+      hideCardDeleteIcon,
+      tagStyle,
+      cardStyle,
+      draggable,
+      cardDraggable,
+      cards,
+      cardDragClass,
+      id
+    } = this.props
     const {addCardMode, collapsed} = this.state
 
     const showableCards = collapsed ? [] : cards
@@ -190,7 +201,11 @@ class Lane extends Component {
           {...card}
         />
       )
-      return draggable && cardDraggable ? <Draggable key={card.id}>{cardToRender}</Draggable> : <span key={card.id}>{cardToRender}</span>
+      return draggable && cardDraggable ? (
+        <Draggable key={card.id}>{cardToRender}</Draggable>
+      ) : (
+        <span key={card.id}>{cardToRender}</span>
+      )
     })
 
     return (
@@ -272,7 +287,12 @@ class Lane extends Component {
     const {id, onLaneClick, onLaneScroll, onCardClick, onCardAdd, onCardDelete, ...otherProps} = this.props
     const allClassNames = classNames('react-trello-lane', this.props.className || '')
     return (
-      <Section {...otherProps} key={id} onClick={() => onLaneClick && onLaneClick(id)} draggable={false} className={allClassNames}>
+      <Section
+        {...otherProps}
+        key={id}
+        onClick={() => onLaneClick && onLaneClick(id)}
+        draggable={false}
+        className={allClassNames}>
         {this.renderHeader()}
         {this.renderDragContainer(isDraggingOver)}
         {loading && <Loader />}

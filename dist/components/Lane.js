@@ -63,7 +63,7 @@ class Lane extends _react.Component {
     });
     (0, _defineProperty2.default)(this, "handleScroll", evt => {
       const node = evt.target;
-      const elemScrolPosition = node.scrollHeight - node.scrollTop - node.clientHeight;
+      const elemScrollPosition = node.scrollHeight - node.scrollTop - node.clientHeight;
       const onLaneScroll = this.props.onLaneScroll; // In some browsers and/or screen sizes a decimal rest value between 0 and 1 exists, so it should be checked on < 1 instead of < 0
 
       if (elemScrollPosition < 1 && onLaneScroll && !this.state.loading) {
