@@ -111,8 +111,8 @@
     "webpack": "^3.0.0"
   },
   "peerDependencies": {
-    "react": "*",
-    "react-dom": "*",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
     "styled-components": ">= 4.0.3",
     "lodash": ">= 4.17.11",
     "react-redux": ">= 5.0.7",
